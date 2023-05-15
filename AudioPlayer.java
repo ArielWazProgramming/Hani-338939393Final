@@ -78,3 +78,65 @@ public class Main {
         audioPlayer.play("avi", "sample.avi");
     }
 }
+class TreeNode {
+    int val;
+    TreeNode left;
+    TreeNode right;
+
+    TreeNode(int x) {
+        val = x;
+        left = null;
+        right = null;
+    }
+}
+
+public class SumTree {
+
+    public boolean isSumTree(TreeNode root) {
+        if (root == null) {
+            return true;
+        }
+
+        if (root.left == null && root.right == null) {
+            return true;
+        }
+
+        int leftSum = getSum(root.left);
+        int rightSum = getSum(root.right);
+
+        if (root.val == leftSum + rightSum && isSumTree(root.left) && isSumTree(root.right)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    private int getSum(TreeNode node) {
+        if (node == null) {
+            return 0;
+        }
+
+        if (node.left == null && node.right == null) {
+            return node.val;
+        }
+
+        return node.val + getSum(node.left) + getSum(node.right);
+    }
+
+    public static void main(String[] args) {
+        TreeNode root = new TreeNode(26);
+        root.left = new TreeNode(10);
+        root.right = new TreeNode(3);
+        root.left.left = new TreeNode(4);
+        root.left.right = new TreeNode(6);
+        root.right.right = new TreeNode(3);
+
+        SumTree st = new SumTree();
+
+        if (st.isSumTree(root)) {
+            System.out.println("The tree is a sum tree");
+        } else {
+            System.out.println("The tree is not a sum tree");
+        }
+    }
+}
