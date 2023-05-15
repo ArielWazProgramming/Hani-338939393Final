@@ -98,6 +98,48 @@ public class BST {
 
         return findMax(node.right);
     }
+    
+    public void preorderTraversal() {
+        preorderTraversal(root);
+    }
+
+    private void preorderTraversal(Node node) {
+        if (node == null) {
+            return;
+        }
+
+        System.out.print(node.data + " ");
+        preorderTraversal(node.left);
+        preorderTraversal(node.right);
+    }
+
+    public void inorderTraversal() {
+        inorderTraversal(root);
+    }
+
+    private void inorderTraversal(Node node) {
+        if (node == null) {
+            return;
+        }
+
+        inorderTraversal(node.left);
+        System.out.print(node.data + " ");
+        inorderTraversal(node.right);
+    }
+
+    public void postorderTraversal() {
+        postorderTraversal(root);
+    }
+
+    private void postorderTraversal(Node node) {
+        if (node == null) {
+            return;
+        }
+
+        postorderTraversal(node.left);
+        postorderTraversal(node.right);
+        System.out.print(node.data + " ");
+    }
 
     public static void main(String[] args) {
         BST bst = new BST();
